@@ -71,7 +71,11 @@ if __name__ == "__main__":
 				# get the id field
 				file_id=get_id(url)
 
-				response=subprocess.run(DOWNLOAD_COMMAND.format(file_id=file_id).split(' '),capture_output=True)
+				# check python version because pc may have an old version
+				if not ( sys.version_info.major==3 and sys.version_info.minor >= 7):
+					response=subprocess.run(DOWNLOAD_COMMAND.format(file_id=file_id).split(' '),capture_output=True)
+				else:
+					response=subprocess.run(DOWNLOAD_COMMAND.format(file_id=file_id).split(' '),stdout=subprocess.PIPE)
 
 				filename=get_filename(str(response.stdout))
 
