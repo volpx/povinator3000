@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import subprocess
+import sys
 
 # edit accordingly
 EMAIL_FIELD=1
@@ -27,8 +28,18 @@ def get_filename(response):
 
 
 if __name__ == "__main__":
-	import sys
-	response_file=sys.argv[1]
+	if len(sys.argv) == 2
+		response_file=sys.argv[1]
+	else:
+		response_file='Send thesis presentation.csv'
+
+	try:
+		f=open(response_file)
+	except IOError:
+		print('File',response_file,'not found')
+		exit(-1)
+	finally:
+		f.close()
 
 	print('Make output directory ...')
 	subprocess.run(['mkdir', '-p', OUTPUT_FOLDER])
@@ -49,7 +60,8 @@ if __name__ == "__main__":
 				OUTPUT_FOLDER,
 				lp[DEGREE_FIELD],
 				lp[DEGREE_COURSE_FIELD],
-				lp[ROOM_FIELD]+'-'+lp[COMMISSION_NUMBER_FIELD],lp[EMAIL_FIELD]])
+				lp[ROOM_FIELD]+'-'+lp[COMMISSION_NUMBER_FIELD],
+				lp[EMAIL_FIELD]])
 			subprocess.run(['mkdir', '-p', dd])
 
 			# download files
