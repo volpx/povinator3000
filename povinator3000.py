@@ -28,7 +28,7 @@ def get_filename(response):
 
 
 if __name__ == "__main__":
-	if len(sys.argv) == 2
+	if len(sys.argv) == 2:
 		response_file=sys.argv[1]
 	else:
 		response_file='Send thesis presentation.csv'
